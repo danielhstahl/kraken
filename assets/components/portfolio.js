@@ -62,7 +62,10 @@ var portfolioLoad=function(){
         //console.log(portfolio.balanceInNumeraire);
         for(key in portfolio.balanceInNumeraire){
           totalValue+=portfolio.balanceInNumeraire[key]||0;
-          chartData.push({name:key, y:portfolio.balanceInNumeraire[key]||0});
+          if(portfolio.balanceInNumeraire[key]){
+            chartData.push({name:key, y:portfolio.balanceInNumeraire[key]});
+          }
+
         }
         $('#value').html(totalValue);
         createChart(chartData);

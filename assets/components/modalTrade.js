@@ -26,17 +26,18 @@ var closeModalTrade=function(self){
   if(label){
     var labelBuy=document.getElementById('buycrypto').value;
     var pair=kraken.numeraire+labelBuy;
-    var exchange=function(rate){
+    /*ar exchange=function(rate){
       return rate;
     }
     if(kraken.numeraire.substring(0, 1)==='Z'){//then real world currency
       exchange=function(rate){
         return 1/rate;
       }
-    }
+    }*/
+    var exchange=function(rate){return rate;}
     if(!kraken.assetPairs[pair]){
       pair=labelBuy+kraken.numeraire;
-      console.log(pair);
+      exchange=function(rate){return 1/rate;}
     }
     if(!kraken.assetPairs[pair]){
       console.log("problem1");

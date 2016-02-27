@@ -9,26 +9,44 @@ var kraken={
   numeraire:'ZUSD'//Z denotes real world, X cryptocurrency.  Should store this in the db
 };
 var convertNumeraire=function(numeraire){
-  var exchange=function(rate){
+  /*var exchange=function(rate){
     return 1/rate;
   }
-  if(numeraire.substring(0, 1)==='Z'){//then real world currency
+
+  if(numeraire.substring(0, 1)==='Z'){//then real world currency...THIS IS DUMB! dont use this.  Probably need a new datastructure...
     exchange=function(rate){
       return rate;
     }
-  }
+  }*/
   //console.log(exchange);
   var dt=kraken.assetPairs;
-  //console.log(dt);
   if(portfolio.balance){
     if(!portfolio.balanceInNumeraire){
       portfolio.balanceInNumeraire={};
     }
     for(key in dt){
-      if(dt[key].quote===numeraire&&kraken.assetPrices[key]){
-        portfolio.balanceInNumeraire[dt[key].base]=exchange(kraken.assetPrices[key].c[0])*portfolio.balance[dt[key].base];//get current exchange rate!
+      //console.log(dt[key].base);
+      if((dt[key].quote===numeraire||dt[key].base===numeraire)&&kraken.assetPrices[key]){
+        var exchange=function(rate){return rate;}
+        var type='base';
+        //console.log(dt[key][type]);
+        if(dt[key][type]===numeraire){
+          type='quote';
+          exchange=function(rate){return 1/rate;}
+        }
+        //console.log(dt[key][type]);
+        if(numeraire===dt[key][type]){
+          console.log("got here!");
+          console.log(numeraire);
+
+          exchange=function(rate){return 1;}
+        }
+        portfolio.balanceInNumeraire[dt[key][type]]=exchange(kraken.assetPrices[key].c[0])*portfolio.balance[dt[key][type]];
       }
     }
+    portfolio.balanceInNumeraire[numeraire]=1*portfolio.balance[numeraire];
+    console.log(portfolio.balanceInNumeraire);
+    console.log(portfolio.balance);
     /*if(Path.routes.current==='#/portfolio'){
       var route = Path.match(Path.routes.current,true);
       route.run();
