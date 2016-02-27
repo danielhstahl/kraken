@@ -44,7 +44,7 @@ Path.map("#/portfolio").to(function(){
   portfolioLoad();
 });
 Path.map("#/settings").to(function(){
-  var n=kraken.assetBases.length;
+  /*var n=kraken.assetBases.length;
   for(var i=0; i<n; ++i){
     if(kraken.assetBases[i].numeraireKey===kraken.numeraire){
       kraken.assetBases[i].selected="selected";
@@ -52,8 +52,16 @@ Path.map("#/settings").to(function(){
     else{
       kraken.assetBases[i].selected="";
     }
+  }*/
+  render('settings', {function:'submitSettings', selectFunction:'selectNumeraire', chosenNumeraire:kraken.assets?kraken.assets[kraken.numeraire].altname:'', numeraire:kraken.assetBases, numFunction:'chooseNumeraire'});
+  var btn=document.getElementById('selectNumeraire');
+  var mnel=document.getElementById('dropdown');
+  if(btn){
+    btn.addEventListener('click', mnel.MaterialMenu.handleForClick_.bind(mnel.MaterialMenu)); //to get around menu oddity
+    btn.addEventListener('keydown', mnel.MaterialMenu.handleForKeyboardEvent_.bind(mnel.MaterialMenu)); //to get around menu oddity
   }
-  render('settings', {function:'submitSettings', selectFunction:'selectNumeraire', chosenNumeraire:kraken.numeraire, numeraire:kraken.assetBases, numFunction:'chooseNumeraire'});
+
+
 });
 Path.root("#/portfolio");
 Path.listen();

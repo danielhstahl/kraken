@@ -18,9 +18,12 @@ var submitSettings=function(element){
 
 }
 var selectNumeraire=function(element){
+  console.log(element);
   //console.log(element.options[element.selectedIndex].value);
   //console.log(element.options[element.selectedIndex]);
-  kraken.numeraire=element.options[element.selectedIndex].value;
+  kraken.numeraire=element.dataset.value;
+  var btn=document.getElementById('selectNumeraire');
+  btn.value=kraken.numeraire;
   $.ajax({
     url:'/setNumeraire', //set by login.js
     type:'POST',
