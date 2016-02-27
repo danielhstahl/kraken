@@ -40,7 +40,7 @@ var closeModalTrade=function(self){
     }
   }
   data.username=login.username;
-  console.log(data);
+  //console.log(data);
   /*$.ajax({
     url:modal.url,
     type:'POST',
