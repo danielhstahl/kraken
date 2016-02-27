@@ -5,12 +5,12 @@
             {{message}}
         </p>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="password" id="pswd">
-            <label class="mdl-textfield__label" for="pswd">Password</label>
+            <input data-key='{{key}}' class="mdl-textfield__input" id="pswd">
+            <label class="mdl-textfield__label" for="pswd">Amount</label>
         </div>
     </div>
     <div class="mdl-dialog__actions">
-        <button type="button" data-key='{{key}}' class="mdl-button submit" onclick='{{function}}("pswd")'>Submit</button>
+        <button type="button"  class="mdl-button submit" onclick='{{function}}("pswd")'>Submit</button>
         <button type="button" class="mdl-button" onclick='document.getElementById("{{id}}").close();document.getElementById("{{id}}").remove();'>Cancel</button>
     </div>
 </dialog>

@@ -28,6 +28,7 @@ var submitLogin=function(e){
         modal.title=data.title;
         modal.message=data.message;
         modal.url=data.url;
+        modal.function='closeModalPwd';
         var node=render('modal', modal, true);
         node=node[1];
         var buttons=node.getElementsByClassName('submit');
@@ -40,7 +41,6 @@ var submitLogin=function(e){
         login.secret=data.secret;
         var route = Path.match(Path.routes.current,true);
         route.run();
-
       }
 
     }

@@ -15,9 +15,20 @@ var tradeCrypto=function(labelSell, labelBuy){
     console.log("problem1");
   }
   else{
+    modalTrade.title='Amount';
+    modalTrade.message='Amount to buy (in '+kraken.numeraire+')';
+    modalTrade.url='/kraken';
+    modalTrade.function='closeModalTrade';
+    modalTrade.key='volume';
+    modalTrade.additionalOptions={pair:pair, type:typeOrder, ordertype:'market'};
+    var node=render('modalTrade', modalTrade, true);
+    node=node[1];
+    var buttons=node.getElementsByClassName('submit');
+    buttons[0].focus();
+    node.showModal();
 
-    data.rData={pair:pair,type:typeOrder, ordertype:'market'};
-    console.log(data);
+    //data.rData={pair:pair, type:typeOrder, ordertype:'market'};
+    //console.log(data);
     /*$.ajax({
       url:'/kraken',
       type:'POST',

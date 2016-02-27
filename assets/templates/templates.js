@@ -29,7 +29,28 @@ templates['modal'] = template({"compiler":[7,">= 4.0.0"],"main":function(contain
     + alias4(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data}) : helper)))
     + "</h4>\n    <div class=\"mdl-dialog__content\">\n        <p>\n            "
     + alias4(((helper = (helper = helpers.message || (depth0 != null ? depth0.message : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"message","hash":{},"data":data}) : helper)))
-    + "\n        </p>\n        <div class=\"mdl-textfield mdl-js-textfield mdl-textfield--floating-label\">\n            <input class=\"mdl-textfield__input\" type=\"password\" id=\"pswd\">\n            <label class=\"mdl-textfield__label\" for=\"pswd\">Password</label>\n        </div>\n    </div>\n    <div class=\"mdl-dialog__actions\">\n        <button type=\"button\" class=\"mdl-button submit\" onclick='"
+    + "\n        </p>\n        <div class=\"mdl-textfield mdl-js-textfield mdl-textfield--floating-label\">\n            <input class=\"mdl-textfield__input\" type=\"password\" id=\"pswd\">\n            <label class=\"mdl-textfield__label\" for=\"pswd\">Password</label>\n        </div>\n    </div>\n    <div class=\"mdl-dialog__actions\">\n        <button type=\"button\" data-key='"
+    + alias4(((helper = (helper = helpers.key || (depth0 != null ? depth0.key : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"key","hash":{},"data":data}) : helper)))
+    + "' class=\"mdl-button submit\" onclick='"
+    + alias4(((helper = (helper = helpers["function"] || (depth0 != null ? depth0["function"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"function","hash":{},"data":data}) : helper)))
+    + "(\"pswd\")'>Submit</button>\n        <button type=\"button\" class=\"mdl-button\" onclick='document.getElementById(\""
+    + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
+    + "\").close();document.getElementById(\""
+    + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
+    + "\").remove();'>Cancel</button>\n    </div>\n</dialog>\n";
+},"useData":true});
+templates['modalTrade'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+
+  return "<dialog id='"
+    + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
+    + "' class=\"mdl-dialog\">\n    <h4 class=\"mdl-dialog__title\">"
+    + alias4(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data}) : helper)))
+    + "</h4>\n    <div class=\"mdl-dialog__content\">\n        <p>\n            "
+    + alias4(((helper = (helper = helpers.message || (depth0 != null ? depth0.message : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"message","hash":{},"data":data}) : helper)))
+    + "\n        </p>\n        <div class=\"mdl-textfield mdl-js-textfield mdl-textfield--floating-label\">\n            <input data-key='"
+    + alias4(((helper = (helper = helpers.key || (depth0 != null ? depth0.key : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"key","hash":{},"data":data}) : helper)))
+    + "' class=\"mdl-textfield__input\" id=\"pswd\">\n            <label class=\"mdl-textfield__label\" for=\"pswd\">Amount</label>\n        </div>\n    </div>\n    <div class=\"mdl-dialog__actions\">\n        <button type=\"button\"  class=\"mdl-button submit\" onclick='"
     + alias4(((helper = (helper = helpers["function"] || (depth0 != null ? depth0["function"] : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"function","hash":{},"data":data}) : helper)))
     + "(\"pswd\")'>Submit</button>\n        <button type=\"button\" class=\"mdl-button\" onclick='document.getElementById(\""
     + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
