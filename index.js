@@ -68,7 +68,7 @@ app.post('/login', function(req, res){
     if(err){
       console.log(err);
     }
-    client.query("SELECT key, secret, password FROM auth WHERE username='"+req.body.username+"';", function(err, result){
+    client.query("SELECT key, secret, password, numeraire FROM auth WHERE username='"+req.body.username+"';", function(err, result){
       //console.log(result);
       if(err){
         console.log(err);
@@ -76,13 +76,11 @@ app.post('/login', function(req, res){
       else if(result.rowCount>0){
         if(result.rows[0].password===req.body.password){
           if(result.rows[0].key){
-            res.send({key:decrypt(result.rows[0].key, req.body.password), secret:decrypt(result.rows[0].secret, req.body.password)});
+            res.send({key:decrypt(result.rows[0].key, req.body.password), secret:decrypt(result.rows[0].secret, req.body.password), numeraire:result.rows[0].numeraire});
           }
           else{
             res.send({key:'', secret:''});
           }
-          //console.log(decrypt(hw, "myBadPassword"));
-
         }
         else{
           res.send({title:"Wrong Password!", message:"Enter correct password", url:'/login'});
@@ -113,21 +111,29 @@ app.post('/register', function(req, res){
     });
   });
 });
+app.post('/setNumeraire', function(req, res){
+  var client=new pg.Client(connectionString);
+  client.connect(function(err){
+    if(err){
+      console.log(err);
+    }
+    client.query("UPDATE auth SET numeraire='"+req.body.numeraire+"' WHERE username='"+req.body.username+"';", function(err, result){
+      if(err){
+        console.log(err);
+      }
+      else{
+        return true;
+      }
+      client.end();
+    });
+  });
+});
 app.post('/getPrices', function(req, res){
   var kraken=new krakenClient();
   var assetPairs=req.body.assetPairs;
   var n=assetPairs.length;
   var totalReturn=0;
   var dataToReturn={};
-  //var assetData=[];
-  //console.log(assetPairs);
-  /*for(var i=0; i<n; i++){
-    if(assetPairs[i].indexOf('.')>=0){
-      assetPairs.splice(i, 1);
-      i--;
-      n--;
-    }
-  }*/
   n=assetPairs.length;
   for(var i=0; i<n; ++i){
     kraken.api('Ticker', {pair:assetPairs[i]}, function(error, data){
@@ -174,15 +180,6 @@ app.post('/getAssets', function(req, res){
         dataToReturn.assetPairs[key]=data.result[key];
       }
     }
-    /*for(var i=0; i<n; i++){
-      if(data.result[i].indexOf('.')>=0){
-        data.result.splice(i, 1);
-        i--;
-        n--;
-      }
-    }*/
-    //console.log(dataToReturn.assetPairs);
-    //dataToReturn.assetPairs=data.result;
     currNum++;
     if(currNum===totalNum){
       res.send(dataToReturn);
@@ -192,15 +189,11 @@ app.post('/getAssets', function(req, res){
 app.post('/kraken', function(req, res){
   var kraken=new krakenClient(req.body.key, req.body.secret);
   kraken.api(req.body.rType, req.body.rData, function(error, data) {
-    //dataToReturn[req.body.rType]=data.result;
-    //currNum++;
-    //if(currNum===totalNum){
     if(error){
       console.log(err);
       return res.send(false);
     }
     res.send(data.result);
-    //}
   });
 });
 var server = http.createServer(app).listen(5000);

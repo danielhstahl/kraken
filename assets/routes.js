@@ -44,6 +44,15 @@ Path.map("#/portfolio").to(function(){
   portfolioLoad();
 });
 Path.map("#/settings").to(function(){
+  var n=kraken.assetBases.length;
+  for(var i=0; i<n; ++i){
+    if(kraken.assetBases[i].numeraireKey===kraken.numeraire){
+      kraken.assetBases[i].selected="selected";
+    }
+    else{
+      kraken.assetBases[i].selected="";
+    }
+  }
   render('settings', {function:'submitSettings', selectFunction:'selectNumeraire', chosenNumeraire:kraken.numeraire, numeraire:kraken.assetBases, numFunction:'chooseNumeraire'});
 });
 Path.root("#/portfolio");

@@ -76,7 +76,9 @@ templates['settings'] = template({"1":function(container,depth0,helpers,partials
 
   return "            <option value='"
     + alias2(alias1((depth0 != null ? depth0.numeraireKey : depth0), depth0))
-    + "'>"
+    + "' "
+    + alias2(alias1((depth0 != null ? depth0.selected : depth0), depth0))
+    + ">"
     + alias2(alias1((depth0 != null ? depth0.numeraireLabel : depth0), depth0))
     + "</option>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {

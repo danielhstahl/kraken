@@ -39,6 +39,7 @@ var submitLogin=function(e){
         //console.log("got here");
         login.key=data.key;
         login.secret=data.secret;
+        kraken.numeraire=data.numeraire||kraken.numeraire;
         var route = Path.match(Path.routes.current,true);
         route.run();
       }

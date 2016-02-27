@@ -45,8 +45,7 @@ var convertNumeraire=function(numeraire){
       }
     }
     portfolio.balanceInNumeraire[numeraire]=1*portfolio.balance[numeraire];
-    console.log(portfolio.balanceInNumeraire);
-    console.log(portfolio.balance);
+
     /*if(Path.routes.current==='#/portfolio'){
       var route = Path.match(Path.routes.current,true);
       route.run();
@@ -87,8 +86,11 @@ $.ajax({
     kraken.tickerArray=Object.keys(data.assetPairs);
     getPortfolio();
     //if(Path.routes.current==='#/settings'){
+    if(login.username){
       var route = Path.match(Path.routes.current,true);
       route.run();
+    }
+
     //}
   }
 });

@@ -26,14 +26,6 @@ var closeModalTrade=function(self){
   if(label){
     var labelBuy=document.getElementById('buycrypto').value;
     var pair=kraken.numeraire+labelBuy;
-    /*ar exchange=function(rate){
-      return rate;
-    }
-    if(kraken.numeraire.substring(0, 1)==='Z'){//then real world currency
-      exchange=function(rate){
-        return 1/rate;
-      }
-    }*/
     var exchange=function(rate){return rate;}
     if(!kraken.assetPairs[pair]){
       pair=labelBuy+kraken.numeraire;
