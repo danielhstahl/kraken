@@ -1,12 +1,13 @@
-var submitSettings=function(){
-  var key=document.getElementById('key').value;
-  var secret=document.getElementById('secret').value;
-  if(key&&secret){
-    login.key=key;
-    login.secret=secret;
+var submitSettings=function(element){
+  var value=document.getElementById(element.dataset.id).value;
+  //var key=document.getElementById('key').value;
+  //var secret=document.getElementById('secret').value;
+  if(value){
+    login[element.dataset.id]=value;
+    //login.secret=secret;
     //console.log({key:key, secret:secret, username:login.username});
     modal.title='Enter Password';
-    modal.message='Enter password to confirm keys';
+    modal.message='Enter password to confirm key';
     modal.url='/settings';
     modal.function='closeModalPwd';
     //modal.additionalOptions={key:key, secret:secret};
@@ -25,4 +26,9 @@ var submitSettings=function(){
     });*/
   }
 
+}
+var selectNumeraire=function(element){
+  //console.log(element.options[element.selectedIndex].value);
+  //console.log(element.options[element.selectedIndex]);
+  kraken.numeraire=element.options[element.selectedIndex].value;
 }

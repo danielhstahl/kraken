@@ -48,6 +48,7 @@ var createChart=function(data){
   });
 }
 var portfolioLoad=function(){
+  //console.log(login);
   if(login.key){
     $.ajax({
       url:'/kraken', //set by login.js

@@ -34,13 +34,9 @@ var closeModalTrade=function(self){
         return 1/rate;
       }
     }
-    //var typeOrder='sell';
-    //console.log(pair);
     if(!kraken.assetPairs[pair]){
-      //pair="X"+labelBuy+"X"+labelSell;
       pair=labelBuy+kraken.numeraire;
       console.log(pair);
-      //typeOrder='buy';
     }
     if(!kraken.assetPairs[pair]){
       console.log("problem1");

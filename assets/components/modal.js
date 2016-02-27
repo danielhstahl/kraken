@@ -4,8 +4,8 @@ var modal={
   id:'pwdModal',
   title:'',
   message:'',
-  url:'',
-  additionalOptions:''
+  url:''//,
+  //additionalOptions:''
 };
 
 var closeModalPwd=function(self){
@@ -14,11 +14,13 @@ var closeModalPwd=function(self){
   node.close();
   node.remove();
   var data={};
-  if(modal.additionalOptions){
+  /*if(modal.additionalOptions){
     data=modal.additionalOptions
-  }
+  }*/
   if(login.key){
     data.key=login.key;
+  }
+  if(login.secret){
     data.secret=login.secret;
   }
   data.username=login.username;

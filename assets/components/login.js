@@ -37,7 +37,7 @@ var submitLogin=function(e){
       }
       else{
         //console.log("got here");
-        login.key=data.apikey;
+        login.key=data.key;
         login.secret=data.secret;
         var route = Path.match(Path.routes.current,true);
         route.run();

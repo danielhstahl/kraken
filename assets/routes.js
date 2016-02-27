@@ -44,7 +44,7 @@ Path.map("#/portfolio").to(function(){
   portfolioLoad();
 });
 Path.map("#/settings").to(function(){
-  render('settings', {function:'submitSettings', chosenNumeraire:kraken.numeraire, numeraire:kraken.assetBases, numFunction:'chooseNumeraire'});
+  render('settings', {function:'submitSettings', selectFunction:'selectNumeraire', chosenNumeraire:kraken.numeraire, numeraire:kraken.assetBases, numFunction:'chooseNumeraire'});
 });
 Path.root("#/portfolio");
 Path.listen();

@@ -38,9 +38,18 @@ app.post('/settings', function(req, res){
     if(err){
       console.log(err);
     }
-    var key = encrypt(req.body.key, req.body.password);
-    var secret = encrypt(req.body.secret, req.body.password);
-    client.query("UPDATE auth SET apikey='"+key+"', secret='"+secret+"' WHERE username='"+req.body.username+"';", function(err, result){
+    var val='';
+    var colName='';
+    if(req.body.key){
+      colName='key';
+      val=encrypt(req.body.key, req.body.password);
+    }
+    else if(req.body.secret){
+      colName='secret';
+      val=encrypt(req.body.secret, req.body.password);
+    }
+    //var secret = encrypt(req.body.secret, req.body.password);
+    client.query("UPDATE auth SET "+colName+"='"+key+"' WHERE username='"+req.body.username+"';", function(err, result){
       //console.log(result);
       if(err){
         console.log(err);
@@ -59,18 +68,18 @@ app.post('/login', function(req, res){
     if(err){
       console.log(err);
     }
-    client.query("SELECT apikey, secret, password FROM auth WHERE username='"+req.body.username+"';", function(err, result){
+    client.query("SELECT key, secret, password FROM auth WHERE username='"+req.body.username+"';", function(err, result){
       //console.log(result);
       if(err){
         console.log(err);
       }
       else if(result.rowCount>0){
         if(result.rows[0].password===req.body.password){
-          if(result.rows[0].apikey){
-            res.send({apikey:decrypt(result.rows[0].apikey, req.body.password), secret:decrypt(result.rows[0].secret, req.body.password)});
+          if(result.rows[0].key){
+            res.send({key:decrypt(result.rows[0].key, req.body.password), secret:decrypt(result.rows[0].secret, req.body.password)});
           }
           else{
-            res.send({apikey:'', secret:''});
+            res.send({key:'', secret:''});
           }
           //console.log(decrypt(hw, "myBadPassword"));
 
@@ -144,6 +153,7 @@ app.post('/getAssets', function(req, res){
   kraken.api('Assets', null, function(error, data){
     if(error){
       console.log(error);
+      return res.send(false);
     }
     dataToReturn.assets=data.result;
     currNum++;
@@ -154,6 +164,7 @@ app.post('/getAssets', function(req, res){
   kraken.api('AssetPairs', null, function(error, data){
     if(error){
       console.log(error);
+      return res.send(false);
     }
 
     var n=data.result.length;
