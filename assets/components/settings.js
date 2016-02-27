@@ -23,7 +23,7 @@ var selectNumeraire=function(element){
   //console.log(element.options[element.selectedIndex]);
   kraken.numeraire=element.dataset.value;
   var btn=document.getElementById('selectNumeraire');
-  btn.value=kraken.numeraire;
+  btn.value=kraken.assets[kraken.numeraire].altname;
   $.ajax({
     url:'/setNumeraire', //set by login.js
     type:'POST',

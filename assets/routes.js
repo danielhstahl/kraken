@@ -40,7 +40,7 @@ Path.map("#/trades").to(function(){
   }
 });
 Path.map("#/portfolio").to(function(){
-  render('portfolio', {numeraire:kraken.numeraire});
+  render('portfolio', {numeraire:kraken.assets?kraken.assets[kraken.numeraire].altname:kraken.numeraire});
   portfolioLoad();
 });
 Path.map("#/settings").to(function(){
