@@ -1,0 +1,5 @@
+{{#if credentials.username}}
+  {{> (lookup . 'standard') }}
+{{else}}
+  {{> login credentials}}
+{{/if}}

@@ -1,0 +1,33 @@
+{{#if crypto}}
+  <h2>Crypto Exchange</h2>
+  <h3> Sell</h3>
+  <select id='sellcrypto'>
+  {{#each crypto}}
+  <option value='{{this.numeraireKey}}'>{{this.numeraireLabel}}</option>
+  {{/each}}
+  </select>
+  <h3>Buy</h3>
+  <select id='buycrypto'>
+  {{#each crypto}}
+  <option value='{{this.numeraireKey}}'>{{this.numeraireLabel}}</option>
+  {{/each}}
+  </select>
+  <button onclick='{{cryptofunction}}(this)'>Trade</button>
+
+  <h2>Currency Exchange</h2>
+  <h3> Sell</h3>
+  <select >
+  {{#each currency}}
+  <option value='{{this.numeraireKey}}'>{{this.numeraireLabel}}</option>
+  {{/each}}
+  </select>
+  <h3>Buy</h3>
+  <select>
+  {{#each currency}}
+  <option value='{{this.numeraireKey}}'>{{this.numeraireLabel}}</option>
+  {{/each}}
+  </select>
+  <button>Trade</button>
+{{else}}
+Wait for connection
+{{/if}}
