@@ -59,7 +59,11 @@ templates['modalTrade'] = template({"compiler":[7,">= 4.0.0"],"main":function(co
     + "\").remove();'>Cancel</button>\n    </div>\n</dialog>\n";
 },"useData":true});
 templates['portfolio'] = template({"1":function(container,depth0,helpers,partials,data) {
-    return "<div id='container'></div>\n";
+    var helper;
+
+  return "<div id='container'></div>\n<h3>Total value in "
+    + container.escapeExpression(((helper = (helper = helpers.numeraire || (depth0 != null ? depth0.numeraire : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"numeraire","hash":{},"data":data}) : helper)))
+    + ": <span id='value'></span></h3>\n";
 },"3":function(container,depth0,helpers,partials,data) {
     return "  <h1>Enter Keys!</h1>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {

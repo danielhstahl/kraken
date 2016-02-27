@@ -17,6 +17,7 @@ var convertNumeraire=function(numeraire){
       return rate;
     }
   }
+  //console.log(exchange);
   var dt=kraken.assetPairs;
   //console.log(dt);
   if(portfolio.balance){

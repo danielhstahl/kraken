@@ -58,10 +58,13 @@ var portfolioLoad=function(){
         portfolio.balance=data;
         convertNumeraire(kraken.numeraire);//defined in kraken.js
         var chartData=[];
+        var totalValue=0;
         //console.log(portfolio.balanceInNumeraire);
         for(key in portfolio.balanceInNumeraire){
+          totalValue+=portfolio.balanceInNumeraire[key]||0;
           chartData.push({name:key, y:portfolio.balanceInNumeraire[key]||0});
         }
+        $('#value').html(totalValue);
         createChart(chartData);
         //console.log(portfolio.balanceInNumeraire);
         //console.log(portfolio.balance);
